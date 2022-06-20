@@ -20,8 +20,13 @@ export class ApiService {
     allowing the code to wait for the result of the http request.
   */
   async post(requestJson : any, endpoint : string) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
     return new Promise<object>((resolve, reject) => {
-      this.http.post( this.CONNECTOR + endpoint, requestJson).subscribe((result) => {
+      this.http.post( this.CONNECTOR + endpoint, requestJson, httpOptions).subscribe((result) => {
         resolve(result);
       });
     });
