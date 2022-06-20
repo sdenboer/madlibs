@@ -21,11 +21,8 @@ export class ApiService {
   */
   async post(requestJson : any, endpoint : string) {
     return new Promise<object>((resolve, reject) => {
-      let params = new HttpHeaders().set('requestJson', JSON.stringify(requestJson));
-      this.http.get( this.CONNECTOR + endpoint,
-      {
-        headers: params
-      }).subscribe((result) => {
+      let body = JSON.stringify(requestJson);
+      this.http.post( this.CONNECTOR + endpoint, body).subscribe((result) => {
         resolve(result);
       });
     });
