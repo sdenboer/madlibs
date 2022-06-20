@@ -7,10 +7,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class ApiService {
   // The url at which the API is listening.
-  readonly CONNECTOR = isDevMode() ? 
-    'http://localhost:1234/': 
-    "https://madderlibs.koreacentral.azurecontainer.io/MadderLibsAPI/";
-  
+  readonly CONNECTOR = isDevMode() ?
+    'http://localhost:1234/':
+    "https://madderlibs.azurewebsites.net/MadderLibsAPI/";
+
   // Constructor
   constructor(private http: HttpClient) { }
 
@@ -22,7 +22,7 @@ export class ApiService {
   async post(requestJson : any, endpoint : string) {
     return new Promise<object>((resolve, reject) => {
       let params = new HttpHeaders().set('requestJson', JSON.stringify(requestJson));
-      this.http.get( this.CONNECTOR + endpoint, 
+      this.http.get( this.CONNECTOR + endpoint,
       {
         headers: params
       }).subscribe((result) => {
